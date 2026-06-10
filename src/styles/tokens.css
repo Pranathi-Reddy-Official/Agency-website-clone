@@ -1,0 +1,48 @@
+/**
+ * Upsync-inspired design tokens (Tailwind v4 @theme)
+ */
+
+@theme {
+  /* Colors */
+  --color-black: #000000;
+  --color-surface-nav: #0a0a0a;
+  --color-surface-card: #080808;
+  --color-surface-card-alt: #1a1a1a;
+  --color-brand: #5229cd;
+  --color-brand-muted: rgba(82, 41, 205, 0.3);
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-muted: rgba(255, 255, 255, 0.6);
+  --color-muted-foreground: rgba(255, 255, 255, 0.7);
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-brand: rgba(82, 41, 205, 0.3);
+  --color-primary: #5229cd;
+  --color-primary-foreground: #ffffff;
+  --color-ring: #5229cd;
+  --color-capsule: #050505;
+
+  /* Typography */
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-ui: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Layout */
+  --container-site: 75rem;
+  --container-canvas: 100rem;
+  --spacing-section: 6.25rem;
+  --spacing-cta: 7.5rem;
+
+  /* Radius */
+  --radius-card: 1.5625rem;
+  --radius-card-lg: 1.875rem;
+  --radius-button: 6.25rem;
+  --radius-pill: 9999px;
+
+  /* Z-index */
+  --z-header: 40;
+  --z-overlay: 50;
+
+  /* Motion */
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+}

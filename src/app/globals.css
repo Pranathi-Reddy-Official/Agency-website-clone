@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: auto;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-primary) 35%, transparent);
+    color: var(--color-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .container-site {
+    width: 100%;
+    max-width: var(--container-site);
+    margin-inline: auto;
+    padding-inline: clamp(0.9375rem, 4vw, 1.875rem);
+  }
+
+  .container-canvas {
+    width: 100%;
+    max-width: var(--container-canvas);
+    margin-inline: auto;
+  }
+
+  .section-padding {
+    padding-block: var(--spacing-section);
+  }
+
+  .glass-nav {
+    background-color: var(--color-surface-nav);
+    backdrop-filter: blur(77px);
+    -webkit-backdrop-filter: blur(77px);
+  }
+
+  .border-subtle {
+    border: 1px solid var(--color-border);
+  }
+
+  .border-brand {
+    border: 1px solid var(--color-border-brand);
+  }
+
+  .purple-glow-line {
+    background: radial-gradient(
+      39% 50% at 50% 50%,
+      var(--color-brand) 0%,
+      transparent 100%
+    );
+    height: 12px;
+  }
+
+  .fade-edge-x {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 12%,
+      black 88%,
+      transparent 100%
+    );
+  }
+
+  .gpu-accelerate {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-ui {
+    font-family: var(--font-ui);
+  }
+}

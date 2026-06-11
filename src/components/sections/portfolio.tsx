@@ -7,9 +7,9 @@ import { SectionShell } from "@/components/ui/section-shell";
 import { staggerContainer, staggerItem } from "@/lib/motion/variants";
 
 const stats = [
-  { value: "1,500+", label: "Videos Created" },
+  { value: "1782+", label: "Videos Created" },
   { value: "2.0B+", label: "Views Generated" },
-  { value: "800K+", label: "Total Watch Hours" },
+  { value: "800K+", label: "Total count Hours" },
 ];
 
 export function Portfolio() {

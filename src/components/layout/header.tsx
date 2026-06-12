@@ -20,27 +20,33 @@ export function Header() {
   return (
     <>
       <m.header
-        className="pointer-events-none fixed inset-x-0 top-0 z-[var(--z-header)] flex justify-center px-[5%] pt-0 md:pt-0 max-md:pt-2.5"
+        className="pointer-events-none fixed inset-x-0 top-0 z-[var(--z-header)] flex justify-center px-[5%] pt-4 md:pt-6"
         variants={headerDrop}
         initial="hidden"
         animate="visible"
       >
-        <div className="pointer-events-auto w-full max-w-[1200px]">
+        <div className="pointer-events-auto mx-auto w-fit">
           {/* Desktop / tablet pill */}
           <nav
-            className="glass-nav hidden items-center justify-between gap-4 rounded-full px-6 py-3 md:flex"
+            className="glass-nav hidden items-center gap-10 rounded-full pl-4 pr-3 py-2.5 md:flex border border-white/10 shadow-lg"
             aria-label="Main navigation"
           >
             <Link
               href="/"
-              className="flex items-center gap-2 text-white transition-opacity hover:opacity-80"
+              className="flex items-center text-white transition-opacity hover:opacity-80"
               aria-label={`${siteConfig.name} home`}
             >
-              <span className="flex size-7 items-center justify-center rounded-md bg-brand/20">
-                <Zap className="size-4 text-brand" strokeWidth={2.5} aria-hidden />
-              </span>
-              <span className="font-display text-sm font-semibold tracking-tight">
-                {siteConfig.name}
+              <span className="flex size-9 items-center justify-center rounded-[12px] bg-[#0e0e0e] border border-white/10 shadow-sm">
+                {/* Custom Upsync Logo SVG */}
+                <svg
+                  viewBox="0 0 24 24"
+                  className="size-5 fill-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect x="3" y="13" width="3.5" height="7" rx="0.75" />
+                  <rect x="10.25" y="8" width="3.5" height="12" rx="0.75" />
+                  <path d="M17.5 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1v3.5a1 1 0 0 1-2 0V4.414l-6.293 6.293a1 1 0 0 1-1.414 0L12 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414l5-5a1 1 0 0 1 1.414 0L14 8.586l5.586-5.586H18.5a1 1 0 0 1-1-1z" />
+                </svg>
               </span>
             </Link>
 
@@ -57,18 +63,27 @@ export function Header() {
               ))}
             </ul>
 
-            <Button href={siteConfig.cta.href}>{siteConfig.cta.label}</Button>
+            <Button href={siteConfig.cta.href} showArrow={false}>{siteConfig.cta.label}</Button>
           </nav>
 
           {/* Mobile bar */}
-          <div className="glass-nav flex items-center justify-between rounded-2xl px-5 py-4 md:hidden">
+          <div className="glass-nav flex items-center justify-between rounded-2xl px-5 py-4 md:hidden border border-white/10 shadow-lg min-w-[280px]">
             <Link
               href="/"
               className="flex items-center gap-2"
               aria-label={`${siteConfig.name} home`}
             >
-              <span className="flex size-7 items-center justify-center rounded-md bg-brand/20">
-                <Zap className="size-4 text-brand" strokeWidth={2.5} aria-hidden />
+              <span className="flex size-9 items-center justify-center rounded-[12px] bg-[#0e0e0e] border border-white/10 shadow-sm">
+                {/* Custom Upsync Logo SVG */}
+                <svg
+                  viewBox="0 0 24 24"
+                  className="size-5 fill-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect x="3" y="13" width="3.5" height="7" rx="0.75" />
+                  <rect x="10.25" y="8" width="3.5" height="12" rx="0.75" />
+                  <path d="M17.5 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1v3.5a1 1 0 0 1-2 0V4.414l-6.293 6.293a1 1 0 0 1-1.414 0L12 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414l5-5a1 1 0 0 1 1.414 0L14 8.586l5.586-5.586H18.5a1 1 0 0 1-1-1z" />
+                </svg>
               </span>
             </Link>
 
@@ -120,6 +135,7 @@ export function Header() {
               >
                 <Button
                   href={siteConfig.cta.href}
+                  showArrow={false}
                   onClick={() => setMenuOpen(false)}
                 >
                   {siteConfig.cta.label}

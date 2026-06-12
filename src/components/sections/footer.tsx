@@ -1,112 +1,112 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
-import { siteConfig } from "@/config/site";
-import { Instagram, Linkedin, Twitter, Zap } from "lucide-react";
+import { Instagram, Linkedin, Mail } from "lucide-react";
 
-const footerLinks = {
-  services: [
-    { label: "Long Form", href: "#services" },
-    { label: "Short Form", href: "#services" },
-    { label: "Podcast Edits", href: "#services" },
-    { label: "Ad Creatives", href: "#services" },
-  ],
-  company: [
-    { label: "Results", href: "#results" },
-    { label: "Process", href: "#process" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "Contact", href: "#contact" },
-  ],
-};
-
-const socials = [
-  { label: "Twitter", href: "#", icon: Twitter },
-  { label: "LinkedIn", href: "#", icon: Linkedin },
-  { label: "Instagram", href: "#", icon: Instagram },
-];
+// Custom X logo (formerly Twitter) SVG
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--color-border)] bg-black pb-8 pt-[30px]">
-      <Container className="flex flex-col gap-8 pl-[30px]">
-        <div className="flex flex-col gap-8 lg:flex-row lg:justify-between">
-          <div className="max-w-xl">
-            <Link href="/" className="mb-4 flex items-center gap-2 text-white">
-              <span className="flex size-7 items-center justify-center rounded-md bg-brand/20">
-                <Zap className="size-4 text-brand" aria-hidden />
-              </span>
-              <span className="font-display font-semibold">{siteConfig.name}</span>
-            </Link>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Original video production for founders and creators who care about
-              quality, consistency, and conversion.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-12 md:gap-16">
-            <div>
-              <p className="mb-3 text-sm font-medium text-white">Services</p>
-              <ul className="flex flex-col gap-2">
-                {footerLinks.services.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/60 transition-colors hover:text-white"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="mb-3 text-sm font-medium text-white">Company</p>
-              <ul className="flex flex-col gap-2">
-                {footerLinks.company.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/60 transition-colors hover:text-white"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+    <footer className="bg-black pb-16 pt-16">
+      <Container className="flex flex-col gap-10">
+        {/* Large Brand Header */}
+        <div>
+          <h2 className="font-sans text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white lowercase">
+            upsync
+          </h2>
         </div>
 
-        <div className="flex flex-col items-start justify-between gap-4 border-t border-[var(--color-border)] pt-6 sm:flex-row sm:items-center">
-          <ul className="flex items-center gap-3">
-            {socials.map(({ label, href, icon: Icon }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  className="flex size-[25px] items-center justify-center text-white/60 transition-colors hover:text-white"
-                  aria-label={label}
+        {/* Columns: Menu and Social */}
+        <div className="flex gap-16 md:gap-24">
+          {/* Menu Column */}
+          <div className="flex flex-col gap-3">
+            <h4 className="text-[15px] font-bold text-white/40 tracking-wide">
+              Menu
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              <li>
+                <Link
+                  href="#hero"
+                  className="font-sans text-[15px] font-bold text-white transition-colors hover:text-[#5229CD]"
                 >
-                  <Icon className="size-4" aria-hidden />
+                  Short-form
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#services"
+                  className="font-sans text-[15px] font-bold text-white transition-colors hover:text-[#5229CD]"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#faq"
+                  className="font-sans text-[15px] font-bold text-white transition-colors hover:text-[#5229CD]"
+                >
+                  FAQs
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social Column */}
+          <div className="flex flex-col gap-3">
+            <h4 className="text-[15px] font-bold text-white/40 tracking-wide">
+              Social
+            </h4>
+            <ul className="flex items-center gap-5 pt-0.5">
+              <li>
+                <a
+                  href="#"
+                  className="text-white hover:text-[#5229CD] transition-colors"
+                  aria-label="X"
+                >
+                  <XIcon className="size-[20px]" />
                 </a>
               </li>
-            ))}
-          </ul>
-
-          <div className="flex flex-col gap-1 text-sm text-white/50 sm:flex-row sm:gap-4">
-            <span>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</span>
+              <li>
+                <a
+                  href="#"
+                  className="text-white hover:text-[#5229CD] transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="size-[20px]" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-white hover:text-[#5229CD] transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="size-[20px]" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:contact@upsync.co"
+                  className="text-white hover:text-[#5229CD] transition-colors"
+                  aria-label="Email"
+                >
+                  <Mail className="size-[20px]" />
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <nav aria-label="Footer navigation" className="flex flex-wrap gap-6 md:hidden">
-          {siteConfig.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm text-white/60 hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Copyright */}
+        <div className="pt-4 border-none text-[13px] font-bold text-white/40 tracking-wider">
+          © 2026 Upsync. All Rights Reserved.
+        </div>
       </Container>
     </footer>
   );

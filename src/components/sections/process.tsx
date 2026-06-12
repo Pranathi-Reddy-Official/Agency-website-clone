@@ -12,9 +12,9 @@ const positives = [
   "Constant, proactive communication",
   "Omni-channel approach",
   "Tailored best-fit solutions",
-  "Industry-specific expertise",
+  "Provides industry specific expertise",
   "Experts with 4+ years of experience",
-  "Extreme quality & consistency",
+  "Extreme Quality & Consistency",
 ];
 
 const negatives = [
@@ -23,82 +23,71 @@ const negatives = [
   "Outdated growth strategies",
   "Lack of industry research",
   "Outsourced to mediocre talent",
-  "Lower unmatched quality",
+  "Lower unmatched Quality",
 ];
-
-function ComparisonColumn({
-  title,
-  items,
-  variant,
-}: {
-  title: string;
-  items: string[];
-  variant: "positive" | "negative";
-}) {
-  const Icon = variant === "positive" ? Check : X;
-
-  return (
-    <m.div
-      variants={staggerItem}
-      className="flex w-full max-w-[450px] flex-col gap-5"
-    >
-      <h3 className="font-display text-xl font-semibold text-white md:text-2xl">
-        {title}
-      </h3>
-      <ul className="flex flex-col gap-2.5">
-        {items.map((item) => (
-          <li
-            key={item}
-            className="flex items-start gap-2.5 font-ui text-base font-medium text-white/90"
-          >
-            <Icon
-              className={cn(
-                "mt-0.5 size-[23px] shrink-0",
-                variant === "positive" ? "text-white" : "text-white/40",
-              )}
-              strokeWidth={2}
-              aria-hidden
-            />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </m.div>
-  );
-}
 
 export function Process() {
   return (
-    <section id="process" className="section-padding">
+    <section id="process" className="section-padding relative">
       <Container>
-        <SectionShell className="flex flex-col items-center gap-11 rounded-[30px] px-4 py-10 md:px-8 md:py-[100px]">
-          <SectionHeading
-            label="Comparison"
-            title="Studio vs everyone else"
-          />
-
-          <div
-            className="h-px w-[170px] bg-[linear-gradient(90deg,transparent_0%,#5229CD_50%,transparent_100%)]"
-            aria-hidden
-          />
+        <SectionShell className="flex flex-col items-center gap-12 border-none bg-transparent px-4 py-10 md:px-8 md:py-[60px]">
+          {/* Custom Pill Badge & Centered Title */}
+          <div className="flex flex-col items-center text-center gap-6">
+            <div className="relative px-6 py-2 rounded-full border border-[#5229CD]/80 bg-black/40 shadow-[0_0_20px_rgba(82,41,205,0.3)] text-base font-semibold tracking-wide text-white font-ui">
+              Comparison
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-[45px] font-semibold text-white tracking-tight leading-tight">
+              Upsync vs everyone else
+            </h2>
+          </div>
 
           <m.div
-            className="grid w-full max-w-5xl grid-cols-1 gap-10 md:grid-cols-2 md:gap-6 md:p-[30px]"
+            className="grid w-full max-w-5xl grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 md:p-[20px] items-center"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
           >
-            <ComparisonColumn
-              title="Everyone else"
-              items={negatives}
-              variant="negative"
-            />
-            <ComparisonColumn
-              title="Studio"
-              items={positives}
-              variant="positive"
-            />
+            {/* Left Column - Negatives (No Card Container) */}
+            <m.div variants={staggerItem} className="flex flex-col gap-6 pl-4 md:pl-10">
+              <ul className="flex flex-col gap-6">
+                {negatives.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-4 font-ui text-base md:text-[17px] font-medium text-white/60"
+                  >
+                    {/* Red Rosette X Icon */}
+                    <svg className="size-[22px] shrink-0 text-[#FF1E1E] fill-current" viewBox="0 0 24 24">
+                      <path d="M12 1l3.086 2.181 3.733-.502.81 3.682 3.251 1.884-1.543 3.42 1.543 3.42-3.251 1.884-.81 3.682-3.733-.502L12 23l-3.086-2.181-3.733.502-.81-3.682-3.251-1.884 1.543-3.42-1.543-3.42 3.251-1.884.81-3.682 3.733.502L12 1z" />
+                      <path fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" d="M8.5 8.5l7 7M15.5 8.5l-7 7" />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </m.div>
+
+            {/* Right Column - Positives (Highlighted Card Container) */}
+            <m.div
+              variants={staggerItem}
+              className="flex flex-col gap-6 border border-white/10 bg-[#050505]/80 backdrop-blur-sm rounded-[25px] p-8 md:p-10 shadow-xl"
+            >
+              <ul className="flex flex-col gap-6">
+                {positives.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-4 font-ui text-base md:text-[17px] font-medium text-white"
+                  >
+                    {/* Blue Rosette Check Icon */}
+                    <svg className="size-[22px] shrink-0 text-[#0066FF] fill-current" viewBox="0 0 24 24">
+                      <path d="M12 1l3.086 2.181 3.733-.502.81 3.682 3.251 1.884-1.543 3.42 1.543 3.42-3.251 1.884-.81 3.682-3.733-.502L12 23l-3.086-2.181-3.733.502-.81-3.682-3.251-1.884 1.543-3.42-1.543-3.42 3.251-1.884.81-3.682 3.733.502L12 1z" />
+                      <path fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" d="M7.5 12.5l3 3 6-6" />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </m.div>
           </m.div>
         </SectionShell>
       </Container>

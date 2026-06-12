@@ -64,13 +64,22 @@ function VideoModal({ isOpen, videoId, aspect = "video", onClose }: VideoModalPr
               <X className="size-4" />
             </button>
 
-            <iframe
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
-              title="Video player"
-              className="w-full h-full border-0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+            {videoId.startsWith("http") || videoId.endsWith(".mp4") ? (
+              <video
+                src={videoId}
+                controls
+                autoPlay
+                className="w-full h-full object-contain bg-black"
+              />
+            ) : (
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+                title="Video player"
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            )}
           </m.div>
         </m.div>
       )}
@@ -110,21 +119,19 @@ function LongFormShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?: 
       variants={staggerItem}
       className="border border-white/10 bg-[#050505] rounded-[25px] p-6 md:p-10 lg:p-12 flex flex-col gap-8 md:gap-10"
     >
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div className="flex flex-col gap-3 max-w-2xl">
-          <h3 className="text-2xl md:text-3xl lg:text-[32px] font-display font-semibold text-white tracking-tight">
-            Long Form Content
-          </h3>
-          <p className="text-sm md:text-base text-white/70 leading-relaxed">
-            Turn your long-form videos into binge-worthy experiences that boost watch time, build authority, and grow subscribers fast.
-          </p>
-        </div>
-        <div className="shrink-0">
+      <div className="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <h3 className="text-2xl md:text-3xl lg:text-[32px] font-display font-semibold text-white tracking-tight">
+          Long Form Content
+        </h3>
+        <p className="text-sm md:text-base text-white/70 leading-relaxed">
+          Turn your long-form videos into binge-worthy experiences that boost watch time, build authority, and grow subscribers fast.
+        </p>
+        <div className="mt-2">
           <Button href="#contact" variant="primary">Explore Pricing</Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto w-full">
         {videoIds.map((id, index) => (
           <div
             key={id}
@@ -136,9 +143,15 @@ function LongFormShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?: 
             {/* Hover overlay */}
             <div className="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/15" />
 
-            {/* Play Button Overlay */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex size-14 items-center justify-center rounded-full border border-white/20 bg-black/50 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#5229CD] group-hover:border-[#5229CD]">
-              <Play className="size-5 fill-white text-white translate-x-0.5" />
+            {/* YouTube Icon Overlay */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:scale-110">
+              <svg
+                viewBox="0 0 24 24"
+                className="size-16 transition-colors duration-300 text-white fill-current group-hover:text-[#FF0000]"
+              >
+                <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.524 3.545 12 3.545 12 3.545s-7.525 0-9.387.51A3.003 3.003 0 0 0 .502 6.163C0 8.07 0 12 0 12s0 3.93.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.475 20.455 12 20.455 12 20.455s7.524 0 9.387-.51a3.003 3.003 0 0 0 2.11-2.108C24 15.93 24 12 24 12s0-3.93-.502-5.837z" />
+                <polygon points="9.545 15.568 15.818 12 9.545 8.432" className="fill-[#050505] group-hover:fill-white transition-colors duration-300" />
+              </svg>
             </div>
           </div>
         ))}
@@ -149,11 +162,13 @@ function LongFormShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?: 
 
 function ShortformShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?: "video" | "portrait") => void }) {
   const shorts = [
-    { id: "k2RzU-J_m0Y", title: "Retention Hook Secret", views: "1.2M views" },
-    { id: "5_XzD3H3S4s", title: "SaaS Scaling Framework", views: "850K views" },
-    { id: "SjLwE0Fz8qQ", title: "Editing Process Breakdown", views: "640K views" },
-    { id: "QzSND9N04nE", title: "Organic Funnels Rule", views: "2.1M views" },
-    { id: "m2X-wY2k4rE", title: "Founder Authority Strategy", views: "930K views" },
+    { id: "short-1", videoUrl: "https://framerusercontent.com/assets/4MXfqGd6KJpQkQrSzPul6KgosP0.mp4", title: "Retention Hook Secret", views: "1.2M views" },
+    { id: "short-2", videoUrl: "https://framerusercontent.com/assets/xoIlXrkVrh6TgM3mmSYFCZoxJco.mp4", title: "SaaS Scaling Framework", views: "850K views" },
+    { id: "short-3", videoUrl: "https://framerusercontent.com/assets/IkxZ12oVlGv99VgMfTXYVYvWmY.mp4", title: "Editing Process Breakdown", views: "640K views" },
+    { id: "short-4", videoUrl: "https://framerusercontent.com/assets/Zj35pnZbNjqCIdPWToXY4Vo.mp4", title: "Organic Funnels Rule", views: "2.1M views" },
+    { id: "short-5", videoUrl: "https://framerusercontent.com/assets/vAL0o2xfP9AhEeBf6z1sBbfwncw.mp4", title: "Founder Authority Strategy", views: "930K views" },
+    { id: "short-6", videoUrl: "https://framerusercontent.com/assets/fLiQQVpWPcTtHuzp0cqgRYDIjPM.mp4", title: "Viral Scaling Blueprint", views: "1.5M views" },
+    { id: "short-7", videoUrl: "https://framerusercontent.com/assets/XikT45wJ7S5PGrAnB8ULhrCBxA.mp4", title: "Retention Strategy", views: "780K views" },
   ];
 
   return (
@@ -161,39 +176,43 @@ function ShortformShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?:
       variants={staggerItem}
       className="border border-white/10 bg-[#050505] rounded-[25px] p-6 md:p-10 lg:p-12 flex flex-col gap-8 md:gap-10"
     >
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div className="flex flex-col gap-3 max-w-2xl">
-          <h3 className="text-2xl md:text-3xl lg:text-[32px] font-display font-semibold text-white tracking-tight">
-            Shortform Content
-          </h3>
-          <p className="text-sm md:text-base text-white/70 leading-relaxed">
-            Grab attention in seconds with scroll-stopping shorts built to convert viewers into followers and buyers.
-          </p>
-        </div>
-        <div className="shrink-0">
+      <div className="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <h3 className="text-2xl md:text-3xl lg:text-[32px] font-display font-semibold text-white tracking-tight">
+          Shortform Content
+        </h3>
+        <p className="text-sm md:text-base text-white/70 leading-relaxed">
+          Grab attention in seconds with scroll-stopping shorts built to convert viewers into followers and buyers.
+        </p>
+        <div className="mt-2">
           <Button href="#contact" variant="primary">Explore Pricing</Button>
         </div>
       </div>
 
-      <div className="relative fade-edge-x">
-        <div className="flex gap-6 overflow-x-auto pb-4 pt-2 hide-scrollbar snap-x snap-mandatory scroll-smooth">
-          {shorts.map((short) => (
+      <div className="relative fade-edge-x overflow-hidden w-full">
+        <div className="flex gap-6 animate-marquee py-2 w-max">
+          {[...shorts, ...shorts].map((short, index) => (
             <div
-              key={short.id}
-              onClick={() => onPlayVideo(short.id, "portrait")}
-              className="group relative w-[210px] sm:w-[250px] aspect-[9/16] shrink-0 snap-start overflow-hidden rounded-[20px] border border-white/10 bg-black/40 cursor-pointer shadow-md transition-transform duration-300 hover:scale-[1.01]"
+              key={`${short.id}-${index}`}
+              onClick={() => onPlayVideo(short.videoUrl, "portrait")}
+              className="group relative w-[180px] sm:w-[220px] aspect-[9/16] shrink-0 overflow-hidden rounded-[20px] border border-white/10 bg-black/40 cursor-pointer shadow-md transition-all duration-300 hover:scale-[1.02] hover:border-[#5229CD]/50"
             >
-              <div className="h-full w-full overflow-hidden">
-                <YouTubeThumbnail videoId={short.id} alt={short.title} />
+              {/* Autoplay Loop Muted Video Element */}
+              <div className="absolute inset-0 h-full w-full overflow-hidden pointer-events-none bg-black">
+                <video
+                  src={short.videoUrl}
+                  loop
+                  autoPlay
+                  muted
+                  playsInline
+                  preload="auto"
+                  className="h-full w-full object-cover pointer-events-none border-0"
+                />
               </div>
 
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent transition-opacity duration-300 group-hover:from-black/95" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent transition-opacity duration-300 group-hover:from-black/95" />
 
-              {/* Play Button Overlay */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/50 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#5229CD] group-hover:border-[#5229CD]">
-                <Play className="size-4 fill-white text-white translate-x-0.5" />
-              </div>
+
 
               {/* Bottom text info overlay */}
               <div className="absolute bottom-0 inset-x-0 p-5 flex flex-col gap-1.5 pointer-events-none">
@@ -241,16 +260,14 @@ function PodcastShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?: "
     >
       <style>{waveStyle}</style>
 
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div className="flex flex-col gap-3 max-w-2xl">
-          <h3 className="text-2xl md:text-3xl lg:text-[32px] font-display font-semibold text-white tracking-tight">
-            Podcast Edits
-          </h3>
-          <p className="text-sm md:text-base text-white/70 leading-relaxed">
-            Transform your recordings into engaging, polished episodes that keep listeners hooked from start to finish.
-          </p>
-        </div>
-        <div className="shrink-0">
+      <div className="flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+        <h3 className="text-2xl md:text-3xl lg:text-[32px] font-display font-semibold text-white tracking-tight">
+          Podcast Edits
+        </h3>
+        <p className="text-sm md:text-base text-white/70 leading-relaxed">
+          Transform your recordings into engaging, polished episodes that keep listeners hooked from start to finish.
+        </p>
+        <div className="mt-2">
           <Button href="#contact" variant="primary">Explore Pricing</Button>
         </div>
       </div>
@@ -269,23 +286,15 @@ function PodcastShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?: "
             {/* Hover overlay */}
             <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/20" />
 
-            {/* Sound Wave indicator badge at top left */}
-            <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-3 py-1.5 backdrop-blur-sm">
-              <div className="flex items-end gap-[2px] h-3.5 w-5 justify-center">
-                <div className="w-[3px] bg-[#5229CD] rounded-full animate-wave-1" />
-                <div className="w-[3px] bg-[#5229CD] rounded-full animate-wave-2" />
-                <div className="w-[3px] bg-[#5229CD] rounded-full animate-wave-3" />
-                <div className="w-[3px] bg-[#5229CD] rounded-full animate-wave-4" />
-                <div className="w-[3px] bg-[#5229CD] rounded-full animate-wave-5" />
-              </div>
-              <span className="text-[10px] font-semibold uppercase text-white tracking-wider">
-                {ep.length}
-              </span>
-            </div>
-
-            {/* Play Button Overlay */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/50 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#5229CD] group-hover:border-[#5229CD]">
-              <Play className="size-4 fill-white text-white translate-x-0.5" />
+            {/* YouTube Icon Overlay */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:scale-110">
+              <svg
+                viewBox="0 0 24 24"
+                className="size-16 transition-colors duration-300 text-black fill-current group-hover:text-[#FF0000]"
+              >
+                <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.524 3.545 12 3.545 12 3.545s-7.525 0-9.387.51A3.003 3.003 0 0 0 .502 6.163C0 8.07 0 12 0 12s0 3.93.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.475 20.455 12 20.455 12 20.455s7.524 0 9.387-.51a3.003 3.003 0 0 0 2.11-2.108C24 15.93 24 12 24 12s0-3.93-.502-5.837z" />
+                <polygon points="9.545 15.568 15.818 12 9.545 8.432" className="fill-white transition-colors duration-300" />
+              </svg>
             </div>
 
             {/* Lower info overlay */}
@@ -305,143 +314,54 @@ function PodcastShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?: "
 }
 
 function AdCreativesVSLShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?: "video" | "portrait") => void }) {
-  const placeholderId = "yD0b2PXuwNI";
-
   return (
-    <div className="border border-white/10 bg-[#050505] rounded-[25px] p-6 md:p-8 flex flex-col justify-between gap-6 h-full">
-      <div className="flex flex-col gap-4">
-        <h3 className="text-xl md:text-2xl font-display font-semibold text-white tracking-tight flex items-center gap-2">
-          <BarChart3 className="size-5 text-[#5229CD]" />
+    <div className="border border-white/10 bg-[#050505] rounded-[25px] p-6 md:p-8 flex flex-col items-center justify-center text-center gap-6 h-full min-h-[280px]">
+      <div className="flex flex-col gap-4 items-center">
+        <h3 className="text-xl md:text-2xl font-display font-semibold text-white tracking-tight">
           Ad Creatives & VSLs
         </h3>
-        <p className="text-sm text-white/70 leading-relaxed min-h-[60px]">
+        <p className="text-sm text-white/70 leading-relaxed max-w-sm">
           High-performing ad creatives and VSLs designed to hook attention, spark action, and maximize conversions.
         </p>
-        <div>
-          <Button href="#contact" variant="primary" className="w-full">Explore Pricing</Button>
-        </div>
       </div>
-
-      <div className="mt-2">
-        <div
-          onClick={() => onPlayVideo(placeholderId, "video")}
-          className="group relative aspect-video w-full overflow-hidden rounded-[16px] border border-white/10 bg-black/40 cursor-pointer shadow-md"
-        >
-          <YouTubeThumbnail videoId={placeholderId} alt="Ad Creative Preview" />
-          <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/20" />
-
-          {/* Ad Stats Mock Overlay */}
-          <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-lg border border-white/10 bg-black/70 px-2.5 py-1 backdrop-blur-sm">
-            <span className="flex size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[10px] font-semibold text-white tracking-wide">
-              4.8x ROAS
-            </span>
-          </div>
-
-          <div className="absolute bottom-3 right-3 rounded-lg border border-white/10 bg-black/70 px-2 py-1 backdrop-blur-sm text-[9px] font-semibold text-white/80 tracking-wider">
-            VSL SHOWCASE
-          </div>
-
-          {/* Play Button Overlay */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/50 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#5229CD] group-hover:border-[#5229CD]">
-            <Play className="size-4 fill-white text-white translate-x-0.5" />
-          </div>
-        </div>
+      <div>
+        <Button href="#contact" variant="primary">Explore Pricing</Button>
       </div>
     </div>
   );
 }
 
 function LinkedInVideosShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?: "video" | "portrait") => void }) {
-  const placeholderId = "QnDHbvCqvkM";
-
   return (
-    <div className="border border-white/10 bg-[#050505] rounded-[25px] p-6 md:p-8 flex flex-col justify-between gap-6 h-full">
-      <div className="flex flex-col gap-4">
-        <h3 className="text-xl md:text-2xl font-display font-semibold text-white tracking-tight flex items-center gap-2">
-          <Linkedin className="size-5 text-[#5229CD]" />
+    <div className="border border-white/10 bg-[#050505] rounded-[25px] p-6 md:p-8 flex flex-col items-center justify-center text-center gap-6 h-full min-h-[280px]">
+      <div className="flex flex-col gap-4 items-center">
+        <h3 className="text-xl md:text-2xl font-display font-semibold text-white tracking-tight">
           LinkedIn Videos
         </h3>
-        <p className="text-sm text-white/70 leading-relaxed min-h-[60px]">
+        <p className="text-sm text-white/70 leading-relaxed max-w-sm">
           Shortform and longform LinkedIn videos that build authority, earn trust, and attract inbound clients effortlessly.
         </p>
-        <div>
-          <Button href="#contact" variant="primary" className="w-full">Explore Pricing</Button>
-        </div>
       </div>
-
-      <div className="mt-2">
-        <div
-          onClick={() => onPlayVideo(placeholderId, "video")}
-          className="group relative aspect-video w-full overflow-hidden rounded-[16px] border border-white/10 bg-black/40 cursor-pointer shadow-md"
-        >
-          <YouTubeThumbnail videoId={placeholderId} alt="LinkedIn Video Preview" />
-          <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/20" />
-
-          {/* LinkedIn UI Badge Overlay */}
-          <div className="absolute top-3 left-3 flex items-center gap-2 rounded-lg border border-white/10 bg-black/70 px-2 py-1 backdrop-blur-sm">
-            <div className="size-4 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500" />
-            <span className="text-[9px] font-semibold text-white/90">
-              Pranathi Reddy • Founder
-            </span>
-          </div>
-
-          <div className="absolute bottom-3 right-3 rounded-lg border border-white/10 bg-black/70 px-2 py-1 backdrop-blur-sm text-[9px] font-semibold text-white/80 tracking-wider">
-            AUTHORITY EDIT
-          </div>
-
-          {/* Play Button Overlay */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/50 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#5229CD] group-hover:border-[#5229CD]">
-            <Play className="size-4 fill-white text-white translate-x-0.5" />
-          </div>
-        </div>
+      <div>
+        <Button href="#contact" variant="primary">Explore Pricing</Button>
       </div>
     </div>
   );
 }
 
 function ExplainersShowcase({ onPlayVideo }: { onPlayVideo: (id: string, aspect?: "video" | "portrait") => void }) {
-  const placeholderId = "ZQxIHUTJin0";
-
   return (
-    <div className="border border-white/10 bg-[#050505] rounded-[25px] p-6 md:p-8 flex flex-col justify-between gap-6 h-full">
-      <div className="flex flex-col gap-4">
-        <h3 className="text-xl md:text-2xl font-display font-semibold text-white tracking-tight flex items-center gap-2">
-          <Laptop className="size-5 text-[#5229CD]" />
+    <div className="border border-white/10 bg-[#050505] rounded-[25px] p-6 md:p-8 flex flex-col items-center justify-center text-center gap-6 h-full min-h-[280px]">
+      <div className="flex flex-col gap-4 items-center">
+        <h3 className="text-xl md:text-2xl font-display font-semibold text-white tracking-tight">
           Explainers
         </h3>
-        <p className="text-sm text-white/70 leading-relaxed min-h-[60px]">
+        <p className="text-sm text-white/70 leading-relaxed max-w-sm">
           Story-driven explainer videos for SaaS, transforming complex products into clear, persuasive narratives that sell.
         </p>
-        <div>
-          <Button href="#contact" variant="primary" className="w-full">Explore Pricing</Button>
-        </div>
       </div>
-
-      <div className="mt-2">
-        <div
-          onClick={() => onPlayVideo(placeholderId, "video")}
-          className="group relative aspect-video w-full overflow-hidden rounded-[16px] border border-white/10 bg-black/40 cursor-pointer shadow-md"
-        >
-          <YouTubeThumbnail videoId={placeholderId} alt="Explainer Video Preview" />
-          <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/20" />
-
-          {/* SaaS Overlay */}
-          <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-lg border border-white/10 bg-black/70 px-2 py-1 backdrop-blur-sm">
-            <span className="text-[10px] font-semibold text-white">
-              SaaS Explainer
-            </span>
-          </div>
-
-          <div className="absolute bottom-3 right-3 rounded-lg border border-white/10 bg-black/70 px-2 py-1 backdrop-blur-sm text-[9px] font-semibold text-white/80 tracking-wider">
-            PRODUCT DEMO
-          </div>
-
-          {/* Play Button Overlay */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/50 backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#5229CD] group-hover:border-[#5229CD]">
-            <Play className="size-4 fill-white text-white translate-x-0.5" />
-          </div>
-        </div>
+      <div>
+        <Button href="#contact" variant="primary">Explore Pricing</Button>
       </div>
     </div>
   );

@@ -59,17 +59,11 @@ export function Header() {
               className="flex items-center text-white transition-opacity hover:opacity-80"
               aria-label={`${siteConfig.name} home`}
             >
-              <span className="flex size-9 items-center justify-center rounded-[12px] bg-[#0e0e0e] border border-white/10 shadow-sm">
-                {/* <svg
-                  viewBox="0 0 24 24"
-                  className="size-5 fill-white"2
-                  xmlns="http://www.w3.org/2000/svg"
-                > */}
-                <img src="/logo.png" alt="logo" className="size-5" />
+              <span className="flex items-center justify-center rounded-[12px] overflow-hidden">
+                <img src="/ecmLogo.png" alt="logo" className="h-10 w-auto object-contain" />
                 <rect x="3" y="13" width="3.5" height="7" rx="0.75" />
                 <rect x="10.25" y="8" width="3.5" height="12" rx="0.75" />
                 <path d="M17.5 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1v3.5a1 1 0 0 1-2 0V4.414l-6.293 6.293a1 1 0 0 1-1.414 0L12 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414l5-5a1 1 0 0 1 1.414 0L14 8.586l5.586-5.586H18.5a1 1 0 0 1-1-1z" />
-                {/* </svg> */}
               </span>
             </Link>
 
@@ -103,13 +97,8 @@ export function Header() {
               className="flex items-center gap-2"
               aria-label={`${siteConfig.name} home`}
             >
-              <span className="flex size-9 items-center justify-center rounded-[12px] bg-[#0e0e0e] border border-white/10 shadow-sm">
-                {/* <svg
-                  viewBox="0 0 24 24"
-                  className="size-5 fill-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                > */}
-                <img src="/logo.png" alt="logo" className="size-5" />
+              <span className="flex items-center justify-center rounded-[12px] overflow-hidden">
+                <img src="/ecmLogo.png" alt="logo" className="h-10 w-auto object-contain" />
                 <rect x="3" y="13" width="3.5" height="7" rx="0.75" />
                 <rect x="10.25" y="8" width="3.5" height="12" rx="0.75" />
                 <path d="M17.5 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1v3.5a1 1 0 0 1-2 0V4.414l-6.293 6.293a1 1 0 0 1-1.414 0L12 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414l5-5a1 1 0 0 1 1.414 0L14 8.586l5.586-5.586H18.5a1 1 0 0 1-1-1z" />

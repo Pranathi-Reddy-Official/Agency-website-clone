@@ -9,13 +9,14 @@ import type { ComponentPropsWithoutRef } from "react";
 
 type ButtonVariant = "primary" | "ghost";
 
-interface ButtonProps extends ComponentPropsWithoutRef<typeof m.button> {
+interface ButtonProps extends Omit<ComponentPropsWithoutRef<typeof m.button>, "onClick"> {
   href?: string;
   variant?: ButtonVariant;
   children: React.ReactNode;
   className?: string;
   external?: boolean;
   showArrow?: boolean;
+  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -65,6 +66,7 @@ export function Button({
   className,
   external,
   showArrow = true,
+  onClick,
   ...props
 }: ButtonProps) {
   const classes = cn(
@@ -84,6 +86,7 @@ export function Button({
           initial="rest"
           whileHover="hover"
           animate="rest"
+          onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
         >
           <ButtonInner variant={variant} showArrow={showArrow}>{children}</ButtonInner>
         </m.a>
@@ -97,7 +100,7 @@ export function Button({
         whileHover="hover"
         animate="rest"
       >
-        <Link href={href} className={cn(classes, "inline-flex items-center")}>
+        <Link href={href} className={cn(classes, "inline-flex items-center")} onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}>
           <ButtonInner variant={variant} showArrow={showArrow}>{children}</ButtonInner>
         </Link>
       </m.div>
@@ -111,6 +114,7 @@ export function Button({
       initial="rest"
       whileHover="hover"
       animate="rest"
+      onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
       {...props}
     >
       <ButtonInner variant={variant} showArrow={showArrow}>{children}</ButtonInner>

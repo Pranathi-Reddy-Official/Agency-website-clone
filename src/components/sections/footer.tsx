@@ -18,7 +18,7 @@ export function Footer() {
         {/* Large Brand Header */}
         <div>
           <h2 className="font-sans text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white lowercase">
-            upsync
+            ECM Studios
           </h2>
         </div>
 
@@ -92,7 +92,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:contact@upsync.co"
+                  href="mailto:contact@ecmstudios.com"
                   className="text-white hover:text-[#5229CD] transition-colors"
                   aria-label="Email"
                 >
@@ -105,7 +105,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="pt-4 border-none text-[13px] font-bold text-white/40 tracking-wider">
-          © 2026 Upsync. All Rights Reserved.
+          © 2026 ECM Studios. All Rights Reserved.
         </div>
       </Container>
     </footer>

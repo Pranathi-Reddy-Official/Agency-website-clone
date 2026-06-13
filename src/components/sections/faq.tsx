@@ -85,7 +85,7 @@ export function FAQ() {
   return (
     <section id="faq" className="section-padding">
       <Container>
-        <SectionShell className="flex flex-col items-center gap-11 px-4 py-10 md:px-8 md:py-[100px]">
+        <SectionShell className="flex flex-col items-center gap-11 px-4 py-8 md:px-8 md:py-16">
           <SectionHeading label="FAQs" title="Questions? We got answers." />
 
           <div className="flex w-full flex-col items-center gap-3">

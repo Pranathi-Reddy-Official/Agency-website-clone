@@ -17,6 +17,29 @@ export function Header() {
     };
   }, [menuOpen]);
 
+  const handleScroll = (e: React.MouseEvent<HTMLElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  const handleMobileScroll = (e: React.MouseEvent<HTMLElement>, href: string) => {
+    setMenuOpen(false);
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <>
       <m.header
@@ -37,16 +60,16 @@ export function Header() {
               aria-label={`${siteConfig.name} home`}
             >
               <span className="flex size-9 items-center justify-center rounded-[12px] bg-[#0e0e0e] border border-white/10 shadow-sm">
-                {/* Custom Upsync Logo SVG */}
-                <svg
+                {/* <svg
                   viewBox="0 0 24 24"
-                  className="size-5 fill-white"
+                  className="size-5 fill-white"2
                   xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect x="3" y="13" width="3.5" height="7" rx="0.75" />
-                  <rect x="10.25" y="8" width="3.5" height="12" rx="0.75" />
-                  <path d="M17.5 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1v3.5a1 1 0 0 1-2 0V4.414l-6.293 6.293a1 1 0 0 1-1.414 0L12 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414l5-5a1 1 0 0 1 1.414 0L14 8.586l5.586-5.586H18.5a1 1 0 0 1-1-1z" />
-                </svg>
+                > */}
+                <img src="/logo.png" alt="logo" className="size-5" />
+                <rect x="3" y="13" width="3.5" height="7" rx="0.75" />
+                <rect x="10.25" y="8" width="3.5" height="12" rx="0.75" />
+                <path d="M17.5 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1v3.5a1 1 0 0 1-2 0V4.414l-6.293 6.293a1 1 0 0 1-1.414 0L12 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414l5-5a1 1 0 0 1 1.414 0L14 8.586l5.586-5.586H18.5a1 1 0 0 1-1-1z" />
+                {/* </svg> */}
               </span>
             </Link>
 
@@ -56,6 +79,7 @@ export function Header() {
                   <Link
                     href={item.href}
                     className="font-sans text-[15px] font-medium leading-[25px] text-white/80 transition-colors hover:text-white"
+                    onClick={(e) => handleScroll(e, item.href)}
                   >
                     {item.label}
                   </Link>
@@ -63,7 +87,13 @@ export function Header() {
               ))}
             </ul>
 
-            <Button href={siteConfig.cta.href} showArrow={false}>{siteConfig.cta.label}</Button>
+            <Button
+              href={siteConfig.cta.href}
+              showArrow={false}
+              onClick={(e) => handleScroll(e, siteConfig.cta.href)}
+            >
+              {siteConfig.cta.label}
+            </Button>
           </nav>
 
           {/* Mobile bar */}
@@ -74,16 +104,16 @@ export function Header() {
               aria-label={`${siteConfig.name} home`}
             >
               <span className="flex size-9 items-center justify-center rounded-[12px] bg-[#0e0e0e] border border-white/10 shadow-sm">
-                {/* Custom Upsync Logo SVG */}
-                <svg
+                {/* <svg
                   viewBox="0 0 24 24"
                   className="size-5 fill-white"
                   xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect x="3" y="13" width="3.5" height="7" rx="0.75" />
-                  <rect x="10.25" y="8" width="3.5" height="12" rx="0.75" />
-                  <path d="M17.5 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1v3.5a1 1 0 0 1-2 0V4.414l-6.293 6.293a1 1 0 0 1-1.414 0L12 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414l5-5a1 1 0 0 1 1.414 0L14 8.586l5.586-5.586H18.5a1 1 0 0 1-1-1z" />
-                </svg>
+                > */}
+                <img src="/logo.png" alt="logo" className="size-5" />
+                <rect x="3" y="13" width="3.5" height="7" rx="0.75" />
+                <rect x="10.25" y="8" width="3.5" height="12" rx="0.75" />
+                <path d="M17.5 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1v3.5a1 1 0 0 1-2 0V4.414l-6.293 6.293a1 1 0 0 1-1.414 0L12 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414l5-5a1 1 0 0 1 1.414 0L14 8.586l5.586-5.586H18.5a1 1 0 0 1-1-1z" />
+                {/* </svg> */}
               </span>
             </Link>
 
@@ -111,6 +141,16 @@ export function Header() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
+            {/* Close Button inside Mobile Menu */}
+            <button
+              type="button"
+              className="absolute top-6 right-6 flex size-10 items-center justify-center text-white/80 hover:text-white transition-colors"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <X className="size-6" />
+            </button>
+
             <div className="flex h-full flex-col items-center justify-center gap-8 px-6">
               {siteConfig.nav.map((item, i) => (
                 <m.div
@@ -122,7 +162,7 @@ export function Header() {
                   <Link
                     href={item.href}
                     className="font-display text-2xl font-medium text-white"
-                    onClick={() => setMenuOpen(false)}
+                    onClick={(e) => handleMobileScroll(e, item.href)}
                   >
                     {item.label}
                   </Link>
@@ -136,7 +176,7 @@ export function Header() {
                 <Button
                   href={siteConfig.cta.href}
                   showArrow={false}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => handleMobileScroll(e, siteConfig.cta.href)}
                 >
                   {siteConfig.cta.label}
                 </Button>

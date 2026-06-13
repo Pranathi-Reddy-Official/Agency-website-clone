@@ -1,33 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Inter, Poppins } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import { Providers } from "@/providers/providers";
 import "./globals.css";
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Studio — Video Production",
-    template: "%s | Studio",
+    default: "ECM Studios — Video Production",
+    template: "%s | ECM Studios",
   },
   description:
     "Original video production experiences built for authority, audience growth, and conversion.",
@@ -47,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} ${inter.variable} ${dmSans.variable} antialiased`}
+        className={`${dmSans.variable} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

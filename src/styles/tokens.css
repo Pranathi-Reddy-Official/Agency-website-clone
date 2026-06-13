@@ -22,8 +22,8 @@
   --color-capsule: #050505;
 
   /* Typography */
-  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-ui: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
 
   /* Layout */

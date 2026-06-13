@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Studio",
+  name: "ECM Studios",
   cta: {
     label: "Book A Call",
     href: "#contact",

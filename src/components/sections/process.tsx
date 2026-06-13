@@ -37,7 +37,7 @@ export function Process() {
               Comparison
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-[45px] font-semibold text-white tracking-tight leading-tight">
-              Upsync vs everyone else
+              ECM Studios vs everyone else
             </h2>
           </div>
 

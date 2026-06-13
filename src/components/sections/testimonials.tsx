@@ -87,7 +87,7 @@ export function Testimonials() {
   return (
     <section id="testimonials" className="section-padding">
       <Container>
-        <SectionShell className="flex flex-col items-center gap-11 overflow-hidden px-4 py-10 md:px-8 md:py-[100px]">
+        <SectionShell className="flex flex-col items-center gap-11 overflow-hidden px-4 py-8 md:px-8 md:py-16">
           <SectionHeading
             label="Testimonials"
             title="What founders are saying"

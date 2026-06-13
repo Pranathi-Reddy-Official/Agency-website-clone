@@ -381,7 +381,7 @@ export function Services() {
   return (
     <section id="services" className="section-padding relative">
       <Container>
-        <SectionShell className="flex flex-col items-center gap-16 px-4 pb-8 pt-16 md:px-8 md:pt-[100px] border-none bg-transparent">
+        <SectionShell className="flex flex-col items-center gap-16 px-4 pb-8 pt-4 md:px-8 md:pt-6 border-none bg-transparent">
           <SectionHeading
             label="Services"
             title="Everything you need to dominate every platform"
